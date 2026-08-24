@@ -313,7 +313,47 @@ def modulo_eda():
             ax.set_ylabel("Conteo")
             plt.xticks(rotation=45)
             st.pyplot(fig)
+         
+    # Ítem 7: Análisis bivariado (numérico vs categórico)
+    with tabs[6]:
+        st.subheader("Análisis bivariado: numérico vs categórico")
 
+        col1, col2 = st.columns(2)
+        with col1:
+            var_num = st.selectbox("Variable numérica:", numericas, key="item7_num")
+        with col2:
+            var_cat = st.selectbox("Variable categórica:", categoricas, key="item7_cat")
+
+        st.markdown(f"**Comparación de `{var_num}` según `{var_cat}`**")
+        st.dataframe(analyzer.comparar_grupos(var_num, var_cat))
+
+        fig, ax = plt.subplots(figsize=(8, 4))
+        sns.boxplot(data=df, x=var_cat, y=var_num, ax=ax)
+        plt.xticks(rotation=45)
+        st.pyplot(fig)
+
+    # Ítem 8: Análisis bivariado (categórico vs categórico)
+    with tabs[7]:
+        st.subheader("Análisis bivariado: categórico vs categórico")
+
+        if len(categoricas) < 2:
+            st.info("Se necesitan al menos dos variables categóricas para este análisis.")
+        else:
+            col1, col2 = st.columns(2)
+            with col1:
+                var_cat1 = st.selectbox("Primera variable categórica:", categoricas, key="item8_cat1")
+            with col2:
+                opciones_cat2 = [c for c in categoricas if c != var_cat1]
+                var_cat2 = st.selectbox("Segunda variable categórica:", opciones_cat2, key="item8_cat2")
+
+            tabla_cruzada = pd.crosstab(df[var_cat1], df[var_cat2])
+            st.markdown(f"**Tabla cruzada: `{var_cat1}` vs `{var_cat2}`**")
+            st.dataframe(tabla_cruzada)
+
+            fig, ax = plt.subplots(figsize=(8, 4))
+            tabla_cruzada.plot(kind="bar", stacked=True, ax=ax)
+            plt.xticks(rotation=45)
+            st.pyplot(fig)
 
 #Rutas
 if modulo == "Home":
