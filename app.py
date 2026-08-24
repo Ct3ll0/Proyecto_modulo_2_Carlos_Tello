@@ -170,7 +170,14 @@ def modulo_eda():
     if st.session_state.df is None:
         st.warning("Primero debes cargar el dataset en el módulo 'Carga de Datos'.")
         return
+    df = st.session_state.df
+    analyzer = DataAnalyzer(df)
+    numericas, categoricas = analyzer.clasificar_variables()
 
+    tabs = st.tabs([
+        "1. Información general del dataset",
+        "2️. Clasificación de variables",
+    ])
     # Ítem 1: Información general del dataset
     with tabs[0]:
         st.subheader("Información general del dataset")
