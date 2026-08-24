@@ -175,8 +175,16 @@ def modulo_eda():
     numericas, categoricas = analyzer.clasificar_variables()
 
     tabs = st.tabs([
-        "1. Información general del dataset",
-        "2️. Clasificación de variables",
+        "1. Info general",
+        "2. Clasificación",
+        "3. Descriptivas",
+        "4. Valores faltantes",
+        "5. Distribución numérica",
+        "6. Variables categóricas",
+        "7. Numérico vs categórico",
+        "8. Categórico vs categórico",
+        "9. Análisis dinámico",
+        "10. Hallazgos clave"
     ])
     # Ítem 1: Información general del dataset
     with tabs[0]:
@@ -214,6 +222,52 @@ def modulo_eda():
         with col2:
             st.markdown(f"**Variables categóricas ({len(categoricas)})**")
             st.write(categoricas)
+
+      # Ítem 3: Estadísticas descriptivas
+    with tabs[2]:
+        st.subheader("Estadísticas descriptivas")
+
+        st.markdown("**`.describe()`**")
+        st.dataframe(analyzer.estadisticas_descriptivas())
+
+        st.markdown("**Interpretación básica**")
+        col1, col2, col3 = st.columns(3)
+        columna_sel = st.selectbox("Selecciona una variable numérica:", numericas, key="item3_select")
+        medidas = analyzer.medidas_tendencia_central(columna_sel)
+        col1.metric("Media", f"{medidas['media']:.2f}")
+        col2.metric("Mediana", f"{medidas['mediana']:.2f}")
+        col3.metric("Moda", f"{medidas['moda']:.2f}")
+        st.caption(
+            f"La media y la mediana de **{columna_sel}** "
+            f"{'son similares, es una distribución de tendencia simétrica.' if abs(medidas['media'] - medidas['mediana']) / (medidas['mediana'] + 1e-9) < 0.1 else 'son muy diferentes, es una distribución de tendencia asimetría.'}"
+        )
+
+    # Ítem 4: Análisis de valores faltantes
+    with tabs[3]:
+        st.subheader("Análisis de valores faltantes")
+
+        nulos = analyzer.resumen_nulos()
+
+        if nulos.empty:
+            st.success("El dataset no presenta valores faltantes en ninguna columna.")
+        else:
+            st.markdown("**Conteo de valores nulos por columna**")
+            st.dataframe(nulos.rename("Nulos"))
+
+            st.markdown("**Visualización**")
+            fig, ax = plt.subplots(figsize=(8, 4))
+            sns.barplot(x=nulos.values, y=nulos.index, ax=ax, color="steelblue")
+            ax.set_xlabel("Cantidad de nulos")
+            ax.set_ylabel("Columna")
+            st.pyplot(fig)
+
+            st.markdown("**Discusión**")
+            st.write(
+                f"Las columnas con más valores faltantes son "
+                f"**{', '.join(nulos.index[:3].tolist())}**. "
+                "Esto debe resolverse antes de realizar los análisis, "
+                "ya sea mediante imputación o exclusión de datos."
+            )
 
 
 #Rutas
