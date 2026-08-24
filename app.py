@@ -84,8 +84,46 @@ def modulo_home():
  
 #Dataset
 def modulo_carga():
-    st.title("📤 Carga del Dataset")
-    st.markdown("*(contenido del módulo de carga — pendiente de desarrollar)*")
+    st.title("Carga del Dataset")
+ 
+    st.markdown(
+        """
+        Sube el archivo InsuranceCompany.csv para habilitar el módulo. Los análisis no se ejecutarán
+        hasta que el archivo sea cargado correctamente.
+        """
+    )
+ 
+    archivo = st.file_uploader("Selecciona el archivo csv", type=["csv"])
+ 
+    if archivo is not None:
+        try:
+            df = pd.read_csv(archivo)
+        except Exception as e:
+            st.error(f" Ocurrió un error al leer el archivo: {e}")
+            st.session_state.df = None
+            return
+ 
+        # Validación de archivo vacío
+        if df.empty:
+            st.error("El archivo cargado está vacío.")
+            st.session_state.df = None
+            return
+ 
+        st.session_state.df = df
+        st.success("Archivo cargado correctamente.")
+ 
+        st.subheader("Vista previa del dataset")
+        st.dataframe(df.head())
+ 
+        st.subheader("Dimensiones del dataset")
+        col1, col2 = st.columns(2)
+        col1.metric("Filas", df.shape[0])
+        col2.metric("Columnas", df.shape[1])
+ 
+    else:
+        st.info("Aún no se ha cargado ningún archivo.")
+        st.session_state.df = None
+ 
 
 
 #Analisis exploratorio de datos (EDA)
