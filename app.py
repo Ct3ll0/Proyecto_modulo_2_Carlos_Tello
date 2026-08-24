@@ -355,6 +355,61 @@ def modulo_eda():
             plt.xticks(rotation=45)
             st.pyplot(fig)
 
+ 
+    # Ítem 9: Análisis basado en parámetros seleccionados
+    with tabs[8]:
+        st.subheader("Análisis basado en parámetros seleccionados")
+
+        columnas_sel = st.multiselect(
+            "Selecciona una o más columnas numéricas a analizar:",
+            numericas,
+            default=numericas[:2] if len(numericas) >= 2 else numericas,
+        )
+
+        if columnas_sel:
+            st.markdown("**Estadísticas descriptivas de las columnas seleccionadas**")
+            st.dataframe(analyzer.estadisticas_descriptivas(columnas_sel))
+
+            if len(columnas_sel) >= 2:
+                st.markdown("**Matriz de correlación**")
+                fig, ax = plt.subplots(figsize=(8, 5))
+                sns.heatmap(df[columnas_sel].corr(), annot=True, cmap="Blues", ax=ax)
+                st.pyplot(fig)
+        else:
+            st.info("Selecciona al menos una columna para ver el análisis.")
+
+    # Ítem 10: Hallazgos clave
+    with tabs[9]:
+        st.subheader("Hallazgos clave")
+
+        if "renewal" in df.columns:
+            conteo_renewal = df["renewal"].value_counts()
+            tasa_renovacion = (conteo_renewal.get("Sí", 0) / conteo_renewal.sum()) * 100
+            st.metric("Tasa general de renovación", f"{tasa_renovacion:.1f}%")
+
+            fig, ax = plt.subplots(figsize=(6, 4))
+            conteo_renewal.plot(kind="bar", ax=ax, color="steelblue")
+            ax.set_xlabel("renewal")
+            ax.set_ylabel("Cantidad de clientes")
+            st.pyplot(fig)
+
+        st.markdown("**Insights principales**")
+        st.markdown(
+            """
+            - La tasa general de renovación es alta (**~93.7%**), lo que indica que
+              la mayoría de los clientes mantiene su póliza activa.
+            - Los clientes que **no renuevan** tienen un historial de pagos
+              atrasados notablemente mayor que los que sí renuevan, lo que sugiere
+              que la morosidad es un factor asociado a la no renovación.
+            - Los clientes que renuevan tienden a tener un **ingreso promedio más alto**
+              que quienes no renuevan.
+            - El canal de captación **A** presenta la tasa de renovación más alta
+              entre los canales, mientras que el canal **D** presenta la más baja.
+            - El tipo de residencia (urbana o rural) **no muestra una diferencia
+              relevante** en la tasa de renovación entre ambos grupos.
+            """
+        )
+
 #Rutas
 if modulo == "Home":
     modulo_home()
