@@ -212,7 +212,7 @@ def modulo_eda():
     # Ítem 2: Clasificación de variables
     with tabs[1]:
         st.subheader("Clasificación de variables")
- 
+        st.caption("Clasificación se obtiene usando la función personalizada `clasificar_variables()` de la clase DataAnalyzer")
         col1, col2 = st.columns(2)
  
         with col1:
@@ -268,6 +268,51 @@ def modulo_eda():
                 "Esto debe resolverse antes de realizar los análisis, "
                 "ya sea mediante imputación o exclusión de datos."
             )
+        # Ítem 5: Distribución de variables numéricas
+    with tabs[4]:
+        st.subheader("Distribución de variables numéricas")
+
+        columna_num = st.selectbox("Selecciona una variable numérica:", numericas, key="item5_select")
+
+        fig, ax = plt.subplots(figsize=(8, 4))
+        sns.histplot(df[columna_num].dropna(), kde=True, ax=ax, color="steelblue")
+        ax.set_xlabel(columna_num)
+        ax.set_ylabel("Frecuencia")
+        st.pyplot(fig)
+
+        st.caption(
+            f"El histograma de **{columna_num}** permite observar la forma de la distribución "
+            "(simétrica, sesgada, con posibles valores atípicos)."
+        )
+
+    # Ítem 6: Análisis de variables categóricas
+    with tabs[5]:
+        st.subheader("Análisis de variables categóricas")
+
+        if not categoricas:
+            st.info("El dataset no tiene variables categóricas.")
+        else:
+            columna_cat = st.selectbox("Selecciona una variable categórica:", categoricas, key="item6_select")
+
+            conteo = df[columna_cat].value_counts()
+            proporcion = df[columna_cat].value_counts(normalize=True) * 100
+
+            col1, col2 = st.columns(2)
+
+            with col1:
+                st.markdown("**Conteo**")
+                st.dataframe(conteo.rename("Conteo"))
+
+            with col2:
+                st.markdown("**Proporción (%)**")
+                st.dataframe(proporcion.round(2).rename("Proporción (%)"))
+
+            fig, ax = plt.subplots(figsize=(8, 4))
+            sns.barplot(x=conteo.index, y=conteo.values, ax=ax, color="steelblue")
+            ax.set_xlabel(columna_cat)
+            ax.set_ylabel("Conteo")
+            plt.xticks(rotation=45)
+            st.pyplot(fig)
 
 
 #Rutas
