@@ -3,7 +3,7 @@
 
 ## Capturas de la app
 
-<img width="1847" height="992" alt="image" src="https://github.com/user-attachments/assets/19791a7c-355b-4141-8793-b5ea5561afef" />
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/19791a7c-355b-4141-8793-b5ea5561afef" />
 
 
 ## Instrucciones de ejecución
