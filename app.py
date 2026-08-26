@@ -417,29 +417,30 @@ def modulo_eda():
  
         st.markdown(
             """
-            1. La cartera de clientes muestra una tasa de renovación alta (~93.7%),
-            por lo que los esfuerzos de retención deberían enfocarse en el grupo
-            minoritario que no renueva, en lugar de aplicar campañas generales a
-            toda la base de clientes.
+            1. Casi 9 de cada 10 clientes renueva su póliza (~93.7%), así que no
+            tendría mucho sentido lanzar campañas de retención masivas para toda
+            la cartera. Conviene más bien identificar y enfocarse en ese grupo
+            más pequeño que sí está en riesgo de no renovar.
  
-            2. El historial de pagos atrasados es marcadamente mayor entre los
-            clientes que no renuevan. Esto sugiere que un seguimiento más cercano
-            a clientes con atrasos recientes (por ejemplo, recordatorios de pago o
-            facilidades de refinanciamiento) podría mejorar la retención.
+            2. Se nota una diferencia clara en el historial de pagos: quienes no
+            renuevan tienen bastantes más atrasos que quienes sí lo hacen. Esto da
+            una pista concreta para actuar antes de que el cliente se vaya, por
+            ejemplo con recordatorios de pago o algún tipo de facilidad cuando
+            empiezan a atrasarse.
  
-            3. Los clientes con ingresos más bajos muestran una menor tasa de
-            renovación. La compañía podría diseñar planes de pago más flexibles
-            o pólizas de menor costo para este segmento, en vez de asumir que el
-            problema es únicamente de interés en el producto.
+            3. El ingreso también parece jugar un papel: los clientes con menores
+            ingresos renuevan menos. Ahí podría valer la pena pensar en planes más
+            accesibles para ese segmento, en vez de asumir directamente que perdieron
+            interés en el seguro.
  
-            4. Existen diferencias notorias en la tasa de renovación según el canal
-            de captación (el canal A retiene mejor que el canal D). Esto es útil
-            para decidir en qué canales invertir más recursos comerciales y cuáles
-            requieren revisión de su proceso de venta o del perfil de cliente que atraen.
+            4. No todos los canales de captación retienen igual: el canal A tiene
+            la mejor tasa de renovación y el D la más baja. Esto es un buen indicador
+            para decidir dónde vale la pena invertir más en captación y qué canales
+            necesitan revisarse.
  
-            5. El tipo de residencia (urbana o rural) no influye de forma relevante
-            en la renovación, por lo que no debería usarse como criterio para
-            diferenciar estrategias de retención entre zonas.
+            5. Por otro lado, vivir en zona urbana o rural prácticamente no cambia
+            la probabilidad de renovar. O sea que no es una variable que debería
+            usarse para diferenciar estrategias de retención.
             """
         )
 #Rutas
