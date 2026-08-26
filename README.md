@@ -1,5 +1,7 @@
 # Proyecto_modulo_2_Carlos_Tello
+
 ## Descripción del proyecto
+Esta aplicación permite explorar y analizar el dataset "InsuranceCompany", con el fin de identificar los factores que influyen en la renovación de las pólizas de seguro. Se aplican conceptos de análisis de datos, estadística descriptiva y visualización.
 
 ## Capturas de la app
 
