@@ -1,6 +1,7 @@
 # Proyecto_modulo_2_Carlos_Tello
 
 ## Descripción del proyecto
+
 Esta aplicación permite explorar y analizar el dataset "InsuranceCompany", con el fin de identificar los factores que influyen en la renovación de las pólizas de seguro. Se aplican conceptos de análisis de datos, estadística descriptiva y visualización.
 
 ## Capturas de la app
@@ -17,10 +18,13 @@ Esta aplicación permite explorar y analizar el dataset "InsuranceCompany", con 
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/02139736-f938-4632-bd85-5ce5391caa34" />
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/81c69d10-06e4-4ba2-9c8a-88b96a357e21" />
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/9738e9c8-4407-4e9c-bef3-31d363e9d7cc" />
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/5a9f9b7c-38d0-45dd-b9c8-b777e4be1a7b" />
 
 ## Instrucciones de ejecución
+
 1. Cargar el archivo de datos en la sección Carga de Datos.
 2. Ingresar a la sección Análisis Exploratorio (EDA) para poder explorar de manera interactiva el contenido de los datos.
    
 ## Links relevantes
+
 https://proyectomodulo2-carlostello.streamlit.app
