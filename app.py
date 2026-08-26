@@ -184,7 +184,7 @@ def modulo_eda():
         "7. Numérico vs categórico",
         "8. Categórico vs categórico",
         "9. Análisis dinámico",
-        "10. Hallazgos clave"
+        "10. Hallazgos clave",
         "11. Conclusiones finales"
     ])
     # Ítem 1: Información general del dataset
