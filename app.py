@@ -412,7 +412,7 @@ def modulo_eda():
         )
 
  #item 11 Conclusiones finales
-     with tabs[10]:
+    with tabs[10]:
         st.subheader("Conclusiones finales")
  
         st.markdown(
