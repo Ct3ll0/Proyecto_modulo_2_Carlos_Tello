@@ -185,6 +185,7 @@ def modulo_eda():
         "8. Categórico vs categórico",
         "9. Análisis dinámico",
         "10. Hallazgos clave"
+        "11. Conclusiones finales"
     ])
     # Ítem 1: Información general del dataset
     with tabs[0]:
@@ -396,20 +397,51 @@ def modulo_eda():
         st.markdown("**Insights principales**")
         st.markdown(
             """
-            - La tasa general de renovación es alta (**~93.7%**), lo que indica que
+            - La tasa general de renovación es alta (93.7%), esto indica que
               la mayoría de los clientes mantiene su póliza activa.
-            - Los clientes que **no renuevan** tienen un historial de pagos
-              atrasados notablemente mayor que los que sí renuevan, lo que sugiere
+            - Los clientes que no renuevan tienen un historial de pagos
+              atrasados notablemente mayor que los que sí renuevan, esto indica
               que la morosidad es un factor asociado a la no renovación.
-            - Los clientes que renuevan tienden a tener un **ingreso promedio más alto**
+            - Los clientes que renuevan tienden a tener un ingreso promedio más alto
               que quienes no renuevan.
-            - El canal de captación **A** presenta la tasa de renovación más alta
-              entre los canales, mientras que el canal **D** presenta la más baja.
-            - El tipo de residencia (urbana o rural) **no muestra una diferencia
-              relevante** en la tasa de renovación entre ambos grupos.
+            - El canal de captación A presenta la tasa de renovación más alta
+              entre los canales, mientras que el canal D presenta la más baja.
+            - El tipo de residencia (urbana o rural) no muestra una diferencia
+              relevante en la tasa de renovación.
             """
         )
 
+ #item 11 Conclusiones finales
+      with tabs[10]:
+        st.subheader("Conclusiones finales")
+ 
+        st.markdown(
+            """
+            1. La cartera de clientes muestra una tasa de renovación alta (~93.7%),
+            por lo que los esfuerzos de retención deberían enfocarse en el grupo
+            minoritario que no renueva, en lugar de aplicar campañas generales a
+            toda la base de clientes.
+ 
+            2. El historial de pagos atrasados es marcadamente mayor entre los
+            clientes que no renuevan. Esto sugiere que un seguimiento más cercano
+            a clientes con atrasos recientes (por ejemplo, recordatorios de pago o
+            facilidades de refinanciamiento) podría mejorar la retención.
+ 
+            3. Los clientes con ingresos más bajos muestran una menor tasa de
+            renovación. La compañía podría diseñar planes de pago más flexibles
+            o pólizas de menor costo para este segmento, en vez de asumir que el
+            problema es únicamente de interés en el producto.
+ 
+            4. Existen diferencias notorias en la tasa de renovación según el canal
+            de captación (el canal A retiene mejor que el canal D). Esto es útil
+            para decidir en qué canales invertir más recursos comerciales y cuáles
+            requieren revisión de su proceso de venta o del perfil de cliente que atraen.
+ 
+            5. El tipo de residencia (urbana o rural) no influye de forma relevante
+            en la renovación, por lo que no debería usarse como criterio para
+            diferenciar estrategias de retención entre zonas.
+            """
+        )
 #Rutas
 if modulo == "Home":
     modulo_home()
